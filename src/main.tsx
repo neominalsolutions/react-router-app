@@ -34,7 +34,7 @@ const router = createBrowserRouter([
 				Component: PostIndexPage,
 			},
 			{
-				path: '/comments/:postId', // posts/comments/1
+				path: 'comments/:postId', // posts/comments/1
 				Component: PostCommentsPage,
 			},
 		],

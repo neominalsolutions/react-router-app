@@ -17,6 +17,9 @@ function Menu() {
 				<Link style={{ padding: 5 }} to="/hakkimizda">
 					Hakkımızda
 				</Link>
+				<Link style={{ padding: 5 }} to="/posts">
+					Makaleler
+				</Link>
 			</nav>
 		</>
 	);
