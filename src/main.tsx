@@ -4,6 +4,8 @@ import SiteLayout from './layouts/site.layout.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import IndexPage from './pages/index.page.tsx';
 import AboutPage from './pages/about.page.tsx';
+import PostIndexPage from './pages/posts/post.page.tsx';
+import PostCommentsPage from './pages/posts/post.comments.page.tsx';
 
 // Uygulama içerisindeki Browser routerlar burada tanımlanır
 
@@ -20,6 +22,20 @@ const router = createBrowserRouter([
 			{
 				path: 'hakkimizda',
 				Component: AboutPage,
+			},
+		],
+	},
+	{
+		path: 'posts',
+		Component: SiteLayout,
+		children: [
+			{
+				index: true,
+				Component: PostIndexPage,
+			},
+			{
+				path: '/comments/:postId', // posts/comments/1
+				Component: PostCommentsPage,
 			},
 		],
 	},
