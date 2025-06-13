@@ -1,11 +1,16 @@
 import { createRoot } from 'react-dom/client';
 // import './index.css';
-import SiteLayout from './layouts/site.layout.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router';
-import IndexPage from './pages/index.page.tsx';
+import AuthGuard from './guards/auth.guard.tsx';
+import AdminLayout from './layouts/admin.layout.tsx';
+import SiteLayout from './layouts/site.layout.tsx';
+import UnAuthroized from './pages/403.tsx';
+import NotFoundPage from './pages/404.tsx';
 import AboutPage from './pages/about.page.tsx';
-import PostIndexPage from './pages/posts/post.page.tsx';
+import AdminIndexPage from './pages/admin/admin.index.page.tsx';
+import IndexPage from './pages/index.page.tsx';
 import PostCommentsPage from './pages/posts/post.comments.page.tsx';
+import PostIndexPage from './pages/posts/post.page.tsx';
 
 // Uygulama içerisindeki Browser routerlar burada tanımlanır
 
@@ -39,7 +44,26 @@ const router = createBrowserRouter([
 			},
 		],
 	},
+	{
+		path: 'admin',
+		element: (
+			<AuthGuard>
+				<AdminLayout />
+			</AuthGuard>
+		),
+		children: [{ index: true, Component: AdminIndexPage }],
+	},
+	{
+		path: 'unauthorized',
+		Component: UnAuthroized,
+	},
+	{
+		path: '*', // sayfa bulunamadığında yönelnecek olan sayfamız. En sona tanımlamamız lazım yukarıdaki pathleri atlarsa o zaman bu path girer farklı bir component açılır.
+		Component: NotFoundPage,
+	},
 ]);
+
+// tüm admin sayfalarını AuthGuard ile koruma altına aldık.
 
 createRoot(document.getElementById('root')!).render(
 	<RouterProvider router={router} />

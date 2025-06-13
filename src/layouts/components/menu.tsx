@@ -20,6 +20,9 @@ function Menu() {
 				<Link style={{ padding: 5 }} to="/posts">
 					Makaleler
 				</Link>
+				<Link style={{ padding: 5 }} to="/admin">
+					Admin Page
+				</Link>
 			</nav>
 		</>
 	);
