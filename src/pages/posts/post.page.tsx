@@ -1,23 +1,30 @@
 import { useEffect, useState } from 'react';
-import { axiosInstance } from '../../utils/axios';
-import type { Post } from '../../models/post.model';
-import Container from '../../components/ui.container';
 import { Link } from 'react-router';
+import Container from '../../components/ui.container';
+import type { Post } from '../../models/post.model';
+import { getPosts } from '../../services/post.api';
 
 function PostIndexPage() {
 	const [postState, setPostState] = useState<Post[]>([]);
 
+	const loadData = async () => {
+		// verileri servisten çek
+		const data = await getPosts();
+		setPostState(data);
+	};
+
 	useEffect(() => {
 		// post endpoint üzerinden veri çek.
-		axiosInstance
-			.get('/posts')
-			.then((response) => {
-				console.log('data', response);
-				setPostState(response.data);
-			})
-			.catch((err) => {
-				console.log('err', err);
-			});
+		// axiosInstance
+		// 	.get('/posts')
+		// 	.then((response) => {
+		// 		console.log('data', response);
+		// 		setPostState(response.data);
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log('err', err);
+		// 	});
+		loadData();
 	}, []);
 
 	return (

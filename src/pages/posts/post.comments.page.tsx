@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router';
-import { axiosInstance } from '../../utils/axios';
-import type { Comment } from '../../models/comment.model';
 import Container from '../../components/ui.container';
+import type { Comment } from '../../models/comment.model';
+import { getPostComments } from '../../services/post.api';
 
 function PostCommentsPage() {
 	const params = useParams(); // route üzerindeki parametreik değerleri yakalamamızı sağlayan bir react router hook'dur.
@@ -17,15 +17,22 @@ function PostCommentsPage() {
 	const [commentState, setCommentState] = useState<Comment[]>();
 
 	useEffect(() => {
-		axiosInstance
-			.get(`/comments?postId=${params.postId}`)
-			.then((response) => {
-				console.log('response', response);
-				setCommentState(response.data);
-			})
-			.catch((err) => {
-				console.log('err', err);
-			});
+		// axiosInstance
+		// 	.get(`/comments?postId=${params.postId}`)
+		// 	.then((response) => {
+		// 		console.log('response', response);
+		// 		setCommentState(response.data);
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log('err', err);
+		// 	});
+
+		const loadData = async () => {
+			const data = await getPostComments(Number(params.postId));
+			setCommentState(data);
+		};
+
+		loadData();
 	}, []);
 
 	return (
