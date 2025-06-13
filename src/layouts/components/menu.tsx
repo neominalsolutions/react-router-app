@@ -1,4 +1,4 @@
-// import { Link } from 'react-router';
+import { Link } from 'react-router';
 
 function Menu() {
 	return (
@@ -11,8 +11,12 @@ function Menu() {
 					padding: 5,
 				}}
 			>
-				{/* <Link to="/">Anasayfa</Link>
-				<Link to="/hakkimizda">Hakkımızda</Link> */}
+				<Link style={{ padding: 5 }} to="/">
+					Anasayfa
+				</Link>{' '}
+				<Link style={{ padding: 5 }} to="/hakkimizda">
+					Hakkımızda
+				</Link>
 			</nav>
 		</>
 	);
