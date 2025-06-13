@@ -1,4 +1,6 @@
 // Bir component içerisinde dışarıdan bir görüntü jsx dosyası içeriği alacak ise children props ile tanımlanır
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 type FooterProps = {
 	children: React.ReactNode; // children ismi react için özel bir isimdir.
@@ -6,22 +8,20 @@ type FooterProps = {
 
 function FooterComponent({ children }: FooterProps) {
 	return (
-		<div
-			style={{
-				padding: 5,
-				margin: 5,
-				width: '100%',
-				bottom: 0,
-				position: 'fixed',
-				minHeight: '5rem',
-				backgroundColor: 'lightgray',
+		<Box
+			sx={{
 				display: 'flex',
-				flexDirection: 'row',
-				color: 'blue',
+				flexDirection: 'column',
+				mt: 'auto',
+				backgroundColor: 'lightgray',
+				padding: '2rem',
 			}}
 		>
-			{children}
-		</div>
+			<Grid container spacing={2}>
+				{' '}
+				{children}
+			</Grid>
+		</Box>
 	);
 }
 

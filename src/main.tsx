@@ -11,6 +11,8 @@ import AdminIndexPage from './pages/admin/admin.index.page.tsx';
 import IndexPage from './pages/index.page.tsx';
 import PostCommentsPage from './pages/posts/post.comments.page.tsx';
 import PostIndexPage from './pages/posts/post.page.tsx';
+import '@fontsource/roboto/300.css';
+import AlertDialogSlide from './components/dialog.component.tsx';
 
 // Uygulama içerisindeki Browser routerlar burada tanımlanır
 
@@ -52,6 +54,10 @@ const router = createBrowserRouter([
 			</AuthGuard>
 		),
 		children: [{ index: true, Component: AdminIndexPage }],
+	},
+	{
+		path: 'dialog-sample',
+		element: <AlertDialogSlide />,
 	},
 	{
 		path: 'unauthorized',

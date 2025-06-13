@@ -1,3 +1,4 @@
+import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router';
 
 function NotFoundPage() {
@@ -15,7 +16,9 @@ function NotFoundPage() {
 	return (
 		<>
 			<h1>404 Sayfa Bulunamadı</h1>
-			<button onClick={onNavigate}>Anasayfa</button>
+			<Button variant="outlined" size="medium" onClick={onNavigate}>
+				Anasayfa
+			</Button>
 		</>
 	);
 }

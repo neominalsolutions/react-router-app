@@ -1,7 +1,14 @@
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
 function Header() {
 	return (
 		<>
-			<h1>React Router APP</h1>
+			<Box sx={{ flex: 'row' }}>
+				<Typography align="center" variant="h3">
+					React Router APP
+				</Typography>
+			</Box>
 		</>
 	);
 }

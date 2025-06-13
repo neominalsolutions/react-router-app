@@ -1,35 +1,40 @@
 // import { Outlet } from 'react-router';
-import Container from '../components/ui.container';
+
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import { Outlet } from 'react-router';
 import FooterComponent from './components/footer';
 import Menu from './components/menu';
-import Header from './components/header';
-import { Outlet } from 'react-router';
 
 function SiteLayout() {
 	return (
-		<>
-			<Container direction="column">
-				<Header />
-				<Menu />
-			</Container>
+		<Container
+			sx={{
+				minHeight: '100vh',
+				border: '1px solid blue',
+				padding: '0px !important', // stili ezmek için !important yazdık.
+			}}
+			maxWidth={'xl'}
+		>
+			{/* <Header /> */}
+			<Menu />
 
 			{/* dinamik olarak sayfalar bu container içerisine yüklenecek */}
-			<Container direction="row">
-				<Outlet />
-			</Container>
 
-			<Container direction="row">
-				<FooterComponent>
-					<Container direction="row">
-						<div style={{ width: '10rem' }}>@Copy 2025</div>
-						<div style={{ width: '80rem' }}>Şişli/İstanbul</div>
-						<div style={{ width: '20rem' }}>
-							<b>E-Posta:</b> info@test.com
-						</div>
-					</Container>
-				</FooterComponent>
-			</Container>
-		</>
+			<Box sx={{ minHeight: '100vh' }}>
+				<Outlet />
+			</Box>
+
+			{/* Grid kullanırken ekran 12 birime ayrılır */}
+			<FooterComponent>
+				<Grid size={2}>@Copy 2025</Grid>
+				<Grid size={2}>Şişli/İstanbul</Grid>
+				<Grid size={8}>
+					<b>E-Posta:</b> info@test.com
+				</Grid>
+			</FooterComponent>
+		</Container>
 	);
 }
 
